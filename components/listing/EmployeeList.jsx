@@ -22,8 +22,8 @@ export default function EmployeeList({ employees = [], retirees = []  , activeLi
         {activeList.map((person, index) => (
           <div key={index} className={styles.row}>
             <span>
-              <ImageIcon />
-              <img src={person.image || '/placeholder.svg'} alt={person.name} />
+              {/* <ImageIcon /> */}
+              <img src={person.image || '/logos/image_20250103_14.png'} alt={person.name} />
             </span>
             <span>{person.name}</span>
             <span>{person.email}</span>

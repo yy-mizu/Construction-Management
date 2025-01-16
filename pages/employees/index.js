@@ -5,8 +5,8 @@ import styles from '@/components/layouts/ListingLayout.module.scss'
 import TableHeader from '@/components/listing/TableHeader.jsx'
 import { useState } from 'react';
 // Sample data - replace with actual data fetching
-const sampleEmployees = Array(10).fill({
-  image: '/placeholder.svg',
+const sampleEmployees = Array(16).fill({
+  // image: '/placeholder.svg',
   name: 'Jack',
   email: 'jack@mail.com',
   team: 'Team-One',
@@ -14,7 +14,7 @@ const sampleEmployees = Array(10).fill({
 })
 
 const retirees = Array(1).fill({
-  image: '/placeholder.svg',
+  // image: '/placeholder.svg',
   name: 'Jack',
   email: 'jack@mail.com',
   team: 'Team-One',
