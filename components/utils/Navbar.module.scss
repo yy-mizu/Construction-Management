@@ -1,0 +1,39 @@
+@import './variables.scss';
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-md $spacing-lg;
+  background-color: $secondary_color;
+  color: $text_color;
+  height: 56px;
+}
+
+.navbar_left,
+.navbar_right {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  align-items: center;
+}
+
+.icon_button {
+  background: none;
+  border: none;
+  color: $text_color;
+  cursor: pointer;
+  padding: $spacing-xs;
+  
+  &:hover {
+    color: $accent_color;
+  }
+}
+
+.profile {
+  padding: $spacing-xs $spacing-md;
+  background-color: $accent_color;
+  color: $primary_color;
+  border-radius: $border_radius;
+}
+

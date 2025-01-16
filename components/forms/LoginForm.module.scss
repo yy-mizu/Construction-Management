@@ -1,0 +1,167 @@
+@import "./variables.scss";
+@import "./mixin.scss";
+
+.loginWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $accent_color;
+  width: 100%;
+  min-height: 100vh;
+  color: $text_color;
+  
+}
+
+.loginContainer {
+  display: flex;
+  width: 60%;
+  height: 70vh;
+  background-color: $primary_color;
+  border: 2px solid $border_color;
+  border-radius: $border_radius;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+
+  @media (max-width: 830px) {
+    width: 90%;
+    flex-direction: column;
+  }
+
+  @media (max-width: 575px) {
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+  }
+}
+
+.leftBox {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-xl;
+  padding: $spacing-xl;
+
+  @media (max-width: 830px) {
+    display: none;
+  }
+
+  h1 {
+    font-size: 26px;
+    margin-bottom: $spacing-xs;
+  }
+
+  h2 {
+    font-size: 21px;
+  }
+}
+
+.leftBoxResponsive {
+  display: none;
+  padding: $spacing-lg;
+  background-color: $primary_color;
+
+  @media (max-width: 830px) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    img {
+      width: 100px;
+      height: auto;
+    }
+
+    h1 {
+      font-size: 20px;
+      margin-bottom: $spacing-xs;
+    }
+
+    h2 {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 575px) {
+    display: none;
+  }
+}
+
+.rightBox {
+  width: 40%;
+  height: 77%;
+ margin: 64px 44px;
+  background-color: $secondary_color;
+  padding: $spacing-xl;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: $spacing-lg;
+  border: 1px solid $border_color;
+  border-radius: $border_radius;
+
+  @media (max-width: 830px) {
+    width: 100%;
+    padding: $spacing-lg;
+    margin: 0;
+    height: 100%;
+  }
+}
+
+.rightBoxHeader {
+  display: none;
+
+  @media (max-width: 575px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: $spacing-lg;
+    margin: 0 0 0 0;
+    img {
+      width: 80px;
+      height: auto;
+    }
+  }
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+
+  label {
+    display: block;
+    margin-bottom: $spacing-xs;
+    font-weight: 500;
+  }
+
+  input {
+    width: 100%;
+    padding: $spacing-sm;
+    background-color: $primary_color;
+    border: 1px solid $border_color;
+    border-radius: $border_radius;
+    color: $text_color;
+    margin-bottom: $spacing-md;
+
+    &::placeholder {
+      color: rgba($text_color, 0.5);
+    }
+  }
+
+  button {
+    margin-top: $spacing-lg;
+    padding: $button_padding;
+    background-color: $accent_color;
+    color: $primary_color;
+    border-radius: $border_radius;
+    font-weight: 700;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}
+

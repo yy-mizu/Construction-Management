@@ -1,0 +1,73 @@
+@import './variables.scss';
+
+.listing {
+  flex: 1;
+  // background-color: $secondary_color;
+  border-radius: $border_radius;
+  padding: $spacing-md;
+}
+
+
+
+.listing_header {
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr 1fr 64px;
+  padding: $spacing-sm;
+  background-color: $accent_color;
+  color: $primary_color;
+  border-radius: $border_radius;
+  margin-bottom: $spacing-md;
+  font-weight: 600;
+  border: 1px solid white;
+
+  span {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+   // Add border for inner cells
+    // padding: 8px;
+    font-size: 0.8rem;
+    padding-top: 8px;
+  }
+}
+
+.listing_body {
+  .row {
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr 1fr 64px;
+    align-items: center;
+
+    
+    // padding: 0px 8px;
+   
+    // padding: 12px 4px;
+    border-radius: 16px;
+
+    span {
+      border-radius: 16px;
+      background-color:#3E3A3E;
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      border: 1px solid white; // Add border for inner cells
+      height: 40px;
+      align-items: center;
+      color: white;
+      // padding: 8px;
+      font-size: 0.75rem;
+      margin-bottom: 12px;
+      width: 95%;
+    }
+
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-left: $spacing-sm;
+    }
+  }
+
+  .row:not(:last-child) {
+    // border-bottom: 1px solid white; // Add a white border between rows
+  }
+}

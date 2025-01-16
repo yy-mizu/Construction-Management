@@ -1,0 +1,84 @@
+@import './variables.scss';
+
+
+
+.search_inner {
+  background-color: $btn_grey;
+  border-radius: $border_radius;
+  padding: 16px 16px 8px 16px;
+  margin: 18px 20px 0 0;
+  height: 92%;
+
+  .search_keyword {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: $spacing-md;
+
+    input[type="text"] {
+      width: 100%;
+      padding: $spacing-sm $spacing-sm $spacing-sm 40px; // Padding for icon space
+      background-color: black;
+      border: 1px solid $border_color;
+      border-radius: $border_radius;
+      color: $text_color;
+      font-size: 0.75rem;
+    }
+
+    .magnifying_glass {
+      position: absolute;
+      left: 12px;
+      color: black;
+      background-color: white;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      padding: 4px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+.search_input_container {
+  p {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-lg;
+    font-size: 0.75rem;
+  }
+
+  label {
+    display: block;
+    margin-bottom: $spacing-xs;
+    font-size: 0.75rem;
+  }
+}
+
+.search_input {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  background-color: $primary_color;
+  padding: $spacing-sm;
+  border-radius: $border_radius;
+  margin-bottom: $spacing-md;
+
+  select {
+    width: 100%;
+    padding: $spacing-sm;
+    border: 1px solid $border_color;
+    border-radius: $border_radius;
+    background-color: black;
+    color: $text_color;
+    font-size: 0.75rem;
+  }
+
+  svg {
+    color: white;
+    width: 20px;
+    height: 20px;
+  }
+}

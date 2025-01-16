@@ -1,0 +1,24 @@
+@import "./variable.scss";
+@import "./login.scss";
+
+.input_container {
+  background-color: $primary_color;
+  border-radius: $border_radius;
+  border: 1px solid $border_color;
+  height: 400px;
+
+  input {
+    border: 1px solid $border_color;
+    padding: $spacing-sm;
+    border-radius: $border_radius;
+  }
+}
+
+.btn{
+  background-color: $accent_color;
+  border: none;
+  border-radius:10px;
+  padding:$button_padding;
+  cursor: pointer;
+  
+}

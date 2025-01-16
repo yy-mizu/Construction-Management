@@ -1,0 +1,21 @@
+@import './variables.scss';
+
+.content_wrapper {
+  margin: $spacing-sm;
+  display: flex;
+  flex-direction: column;
+  width: 98.5%;
+  background-color: #221E22;
+  border-radius: 16px;
+  min-height: 100vh;
+  // align-items:center;
+
+ 
+}
+
+.content_container
+{
+  display: flex;
+  align-items:top;
+ 
+}

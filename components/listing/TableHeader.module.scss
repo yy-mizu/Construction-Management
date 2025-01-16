@@ -1,0 +1,55 @@
+@import './variables.scss';
+
+.list_btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: $spacing-md;
+    padding: 0px 20px;
+  
+    button {
+      padding: $spacing-sm $spacing-md ;
+      margin-right: $spacing-md;
+      background-color: $btn_grey;
+      color: $text_color;
+      border-radius: 16px;
+      font-size: 0.75rem;
+      align-items: center;
+  
+    
+      &:hover {
+        background-color: black;
+        color: white;
+      }
+  
+      &.active
+      {
+        background-color: black;
+      }
+    }
+  }
+  .add_employee_btn {
+  
+    
+    button {
+      width: 100%;
+      padding: $button_padding;
+      background-color: $text_color;
+      color: $primary_color;
+      border-radius: $border_radius;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: $spacing-sm;
+      
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+  .list_total
+{
+  color: white;
+  font-size: 0.75rem;
+    
+}

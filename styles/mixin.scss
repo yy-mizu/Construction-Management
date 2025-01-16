@@ -1,0 +1,36 @@
+@mixin padding($top: 0, $right: 0, $bottom: 0, $left: 0) {
+    padding: $top $right $bottom $left;
+  }
+  
+  @mixin margin($top: 0, $right: 0, $bottom: 0, $left: 0) {
+  }
+  
+  @mixin flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  @mixin input_container{
+    background-color: $primary_color;
+    border-radius: $border_radius;
+    border: 1px solid $border_color;
+    height: 400px;
+  input {
+    border: 1px solid $border_color;
+    padding: $spacing-sm;
+    border-radius: $border_radius;
+  }
+  
+  }
+  
+  @mixin btn{
+  
+  background-color: $accent_color;
+  border: none;
+  border-radius:10px;
+  padding:$button_padding;
+  cursor: pointer;
+  
+  
+  }
