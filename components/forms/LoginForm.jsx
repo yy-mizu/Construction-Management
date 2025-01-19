@@ -1,18 +1,40 @@
-import { useState } from 'react';
-import Image from 'next/image';
+import { useState } from "react";
+import Image from "next/image";
 
-
-import styles from './LoginForm.module.scss';
+import styles from "./LoginForm.module.scss";
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({ email: "", password: "" });
+
+  const validateEmail = (email) => {
+    // Basic email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email) return "Email is required.";
+    if (!emailRegex.test(email)) return "Invalid email format.";
+    return "";
+  };
+
+  const validatePassword = (password) => {
+    if (!password) return "Password is required.";
+    if (password.length < 6) return "Password must be at least 6 characters.";
+    return "";
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle login logic here
-  };
+    const emailError = validateEmail(email);
+    const passwordError = validatePassword(password);
 
+    if (emailError || passwordError) {
+      setErrors({ email: emailError, password: passwordError });
+    } else {
+      setErrors({ email: "", password: "" });
+      // Handle login logic here
+      console.log("Form submitted:", { email, password });
+    }
+  };
   return (
     <div className={styles.loginWrapper}>
       <div className={styles.loginContainer}>
@@ -23,7 +45,6 @@ export default function Login() {
             alt="Construction Logo"
             width={200}
             height={150}
-         
             priority
           />
           <div>
@@ -39,7 +60,7 @@ export default function Login() {
             <h2>Ready To Be Onboard?</h2>
           </div>
           <Image
-            src="/placeholder.svg"
+            src="/logos/image_20250103_14 (2).png"
             alt="Construction Logo"
             width={100}
             height={50}
@@ -53,7 +74,7 @@ export default function Login() {
           <div className={styles.rightBoxHeader}>
             <h3>Login</h3>
             <Image
-              src="/placeholder.svg"
+              src="/logos/image_20250103_14 (2).png"
               alt="Construction Logo"
               width={80}
               height={40}
@@ -65,13 +86,13 @@ export default function Login() {
             <div>
               <label htmlFor="email">Email</label>
               <input
-                type="email"
+                type="text"
                 id="email"
                 placeholder="text@mail.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                required
               />
+              {errors.email && <p className={styles.error}>{errors.email}</p>}
             </div>
 
             <div>
@@ -82,8 +103,10 @@ export default function Login() {
                 placeholder="........."
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                required
               />
+              {errors.password && (
+                <p className={styles.error}>{errors.password}</p>
+              )}
             </div>
 
             <button type="submit">Login</button>
@@ -93,4 +116,3 @@ export default function Login() {
     </div>
   );
 }
-
