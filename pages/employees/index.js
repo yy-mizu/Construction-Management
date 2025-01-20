@@ -12,7 +12,7 @@ import { useState } from "react";
 // });
 // Updated sample data with both Jack and Sithu
 const sampleEmployees = Array.from({ length: 16 }, (_, index) => {
-  if (index % 2 === 0) {
+  if (index % 3 === 0) {
     return {
       name: "Jack",
       email: "jack@gmail.com",
@@ -22,7 +22,7 @@ const sampleEmployees = Array.from({ length: 16 }, (_, index) => {
       role: "Manager",
       status: "Active",
     };
-  } else {
+  } else if (index % 3 === 1) {
     return {
       name: "Sithu",
       email: "sithu@gmail.com",
@@ -31,6 +31,16 @@ const sampleEmployees = Array.from({ length: 16 }, (_, index) => {
       team: "Team-Two",
       role: "Designer",
       status: "Inactive",
+    };
+  } else {
+    return {
+      name: "Robin",
+      email: "robin@gmail.com",
+      phone: "555666777",
+      assignedTask: "5",
+      team: "Team-Two",
+      role: "Developer",
+      status: "On Leave",
     };
   }
 });
