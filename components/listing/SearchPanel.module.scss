@@ -6,11 +6,13 @@
   background-color: $btn_grey;
   border-radius: $border_radius;
   padding: 16px 16px 8px 16px;
-  margin: 18px 20px 0 0;
-  min-height: 80vh;
+  margin: 16px 20px 0 0;
+  min-height: 90vh;
   color : $text_color;
-  // position: sticky;
-  // right: 0;
+  position: sticky;
+  right: 0;
+  top: 0;
+  width: 280px;
 
   .search_keyword {
     position: relative;

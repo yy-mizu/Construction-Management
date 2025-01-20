@@ -51,6 +51,33 @@ export default function SearchPanel({ onSearch }) {
               </select>
             </div>
           </div>
+
+
+          <div>
+            <label>Assigned Tasks</label>
+            <div className={styles.search_input}>
+              <CheckCircle />
+              <select>
+                <option value="">Select Status</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+                <option value="on_leave">On Leave</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label>Status</label>
+            <div className={styles.search_input}>
+              <CheckCircle />
+              <select>
+                <option value="">Select Status</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+                <option value="on_leave">On Leave</option>
+              </select>
+            </div>
+          </div>
         </div>
       </div>
     </div>
