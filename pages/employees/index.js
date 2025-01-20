@@ -26,7 +26,7 @@ const sampleEmployees = Array.from({ length: 16 }, (_, index) => {
     return {
       name: "Sithu",
       email: "sithu@gmail.com",
-      phone: "123456789",
+      phone: "987654321",
       assignedTask: "3",
       team: "Team-Two",
       role: "Designer",
@@ -61,12 +61,38 @@ const retirees = Array.from({ length: 10 }, (_, index) => {
 
 export default function EmployeesPage() {
   const [activeTab, setActiveTab] = useState("employees");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filters, setFilters] = useState({
+    team: "",
+    role: "",
+    status: "",
+  });
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
 
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value.toLowerCase());
+  };
+
+  const handleFilterChange = (field, value) => {
+    setFilters((prev) => ({ ...prev, [field]: value }));
+  };
+
   const activeList = activeTab === "employees" ? sampleEmployees : retirees;
+
+  const filteredList = activeList.filter((person) => {
+    return (
+      (filters.team === "" || person.team === filters.team) &&
+      (filters.role === "" || person.role === filters.role) &&
+      (filters.status === "" || person.status === filters.status) &&
+      (searchTerm === "" ||
+        person.name.toLowerCase().includes(searchTerm) ||
+        person.email.toLowerCase().includes(searchTerm) ||
+        person.phone.includes(searchTerm))
+    );
+  });
 
   return (
     <MainLayout>
@@ -78,8 +104,12 @@ export default function EmployeesPage() {
         />
 
         <div className={styles.content_container}>
-          <EmployeeList employees={sampleEmployees} activeList={activeList} />
-          <SearchPanel />
+          {/* <EmployeeList employees={sampleEmployees} activeList={activeList} /> */}
+          <EmployeeList employees={sampleEmployees} activeList={filteredList} />
+          <SearchPanel
+            onSearch={handleSearchChange}
+            onFilterChange={handleFilterChange}
+          />
         </div>
       </div>
     </MainLayout>

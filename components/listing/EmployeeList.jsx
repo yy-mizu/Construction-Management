@@ -13,6 +13,17 @@ export default function EmployeeList({
     setSortOrder((prevOrder) => (prevOrder === "asc" ? "desc" : "asc"));
   };
 
+  // const handleSort = (key) => {
+  //   setSortOrder((prevOrder) => (prevOrder === "asc" ? "desc" : "asc"));
+  //   activeList.sort((a, b) => {
+  //     if (sortOrder === "asc") {
+  //       return a[key].localeCompare(b[key]);
+  //     } else {
+  //       return b[key].localeCompare(a[key]);
+  //     }
+  //   });
+  // };
+
   const sortedList = [...activeList].sort((a, b) => {
     if (sortOrder === "asc") {
       return a.name.localeCompare(b.name);
@@ -75,7 +86,6 @@ export default function EmployeeList({
       <div className={styles.listing_body}>
         {sortedList.map((person, index) => (
           <div key={index} className={styles.row}>
-            {console.log(person)}
             <span>
               {/* <ImageIcon /> */}
               <img

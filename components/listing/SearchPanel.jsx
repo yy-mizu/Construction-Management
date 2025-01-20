@@ -1,27 +1,32 @@
-import { Filter, Users, Briefcase, CheckCircle, Search } from 'lucide-react';
-import styles from './SearchPanel.module.scss';
+import { Filter, Users, Briefcase, CheckCircle, Search } from "lucide-react";
+import styles from "./SearchPanel.module.scss";
 
-export default function SearchPanel({ onSearch }) {
+export default function SearchPanel({ onSearch, onFilterChange }) {
   return (
     <div className={styles.search_panel}>
       <div className={styles.search_inner}>
         <div className={styles.search_keyword}>
           <Search className={styles.magnifying_glass} />
-          <input type="text" placeholder="Keyword Search..." />
+          <input
+            type="text"
+            placeholder="Keyword Search..."
+            onChange={onSearch}
+          />
         </div>
 
         <div className={styles.search_input_container}>
-          <p><Filter /> Please set the filtering conditions</p>
+          <p>
+            <Filter /> Please set the filtering conditions
+          </p>
 
           <div>
             <label>Team</label>
             <div className={styles.search_input}>
               <Users />
-              <select>
+              <select onChange={(e) => onFilterChange("team", e.target.value)}>
                 <option value="">Select Team</option>
-                <option value="teamA">Team A</option>
-                <option value="teamB">Team B</option>
-                <option value="teamC">Team C</option>
+                <option value="Team-One">Team-One</option>
+                <option value="Team-Two">Team-Two</option>
               </select>
             </div>
           </div>
@@ -30,11 +35,11 @@ export default function SearchPanel({ onSearch }) {
             <label>Role</label>
             <div className={styles.search_input}>
               <Briefcase />
-              <select>
+              <select onChange={(e) => onFilterChange("role", e.target.value)}>
                 <option value="">Select Role</option>
-                <option value="manager">Manager</option>
-                <option value="developer">Developer</option>
-                <option value="designer">Designer</option>
+                <option value="Manager">Manager</option>
+                <option value="Designer">Designer</option>
+                <option value="Developer">Developer</option>
               </select>
             </div>
           </div>
@@ -43,15 +48,16 @@ export default function SearchPanel({ onSearch }) {
             <label>Status</label>
             <div className={styles.search_input}>
               <CheckCircle />
-              <select>
+              <select
+                onChange={(e) => onFilterChange("status", e.target.value)}
+              >
                 <option value="">Select Status</option>
-                <option value="active">Active</option>
-                <option value="inactive">Inactive</option>
-                <option value="on_leave">On Leave</option>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+                <option value="On Leave">On Leave</option>
               </select>
             </div>
           </div>
-
 
           <div>
             <label>Assigned Tasks</label>
