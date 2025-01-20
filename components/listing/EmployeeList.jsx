@@ -40,6 +40,18 @@ export default function EmployeeList({
           </button>
         </span>
         <span>
+          Phone
+          <button onClick={handleSort} className={styles.sort_button}>
+            <ArrowUpDown />
+          </button>
+        </span>
+        <span>
+          Assigned Task
+          <button onClick={handleSort} className={styles.sort_button}>
+            <ArrowUpDown />
+          </button>
+        </span>
+        <span>
           Team
           <button onClick={handleSort} className={styles.sort_button}>
             <ArrowUpDown />
@@ -73,6 +85,8 @@ export default function EmployeeList({
             </span>
             <span>{person.name}</span>
             <span>{person.email}</span>
+            <span>{person.phone}</span>
+            <span>{person.assignedTask}</span>
             <span>{person.team}</span>
             <span>{person.role}</span>
             <span>{person.status}</span>

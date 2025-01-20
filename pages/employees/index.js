@@ -16,6 +16,8 @@ const sampleEmployees = Array.from({ length: 16 }, (_, index) => {
     return {
       name: "Jack",
       email: "jack@gmail.com",
+      phone: "123456789",
+      assignedTask: "2",
       team: "Team-One",
       role: "Manager",
       status: "Active",
@@ -24,6 +26,8 @@ const sampleEmployees = Array.from({ length: 16 }, (_, index) => {
     return {
       name: "Sithu",
       email: "sithu@gmail.com",
+      phone: "123456789",
+      assignedTask: "3",
       team: "Team-Two",
       role: "Designer",
       status: "Inactive",
@@ -31,11 +35,28 @@ const sampleEmployees = Array.from({ length: 16 }, (_, index) => {
   }
 });
 
-const retirees = Array(1).fill({
-  // image: '/placeholder.svg',
-  name: "Jack",
-  email: "jack@mail.com",
-  team: "Team-One",
+const retirees = Array.from({ length: 10 }, (_, index) => {
+  if (index % 2 === 0) {
+    return {
+      name: "Jack",
+      email: "jack@gmail.com",
+      phone: "123456789",
+      assignedTask: "2",
+      team: "Team-One",
+      role: "Manager",
+      status: "Active",
+    };
+  } else {
+    return {
+      name: "Sithu",
+      email: "sithu@gmail.com",
+      phone: "123456789",
+      assignedTask: "3",
+      team: "Team-Two",
+      role: "Designer",
+      status: "Inactive",
+    };
+  }
 });
 
 export default function EmployeesPage() {
