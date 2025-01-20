@@ -7,8 +7,10 @@
   border-radius: $border_radius;
   padding: 16px 16px 8px 16px;
   margin: 18px 20px 0 0;
-  height: 92%;
+  min-height: 80vh;
   color : $text_color;
+  // position: sticky;
+  // right: 0;
 
   .search_keyword {
     position: relative;

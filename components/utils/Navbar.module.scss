@@ -5,9 +5,10 @@
   justify-content: space-between;
   align-items: center;
   padding: $spacing-md $spacing-lg;
-  background-color: $secondary_color;
+  background-color: black;
   color: $text_color;
   height: 56px;
+  border-bottom : 2px solid $text_color;
 }
 
 .navbar_left,

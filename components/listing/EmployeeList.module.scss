@@ -1,22 +1,25 @@
 @import './variables.scss';
 
 .listing {
-  flex: 1;
-  // background-color: $secondary_color;
+  // flex: 1;
+  background-color: black;
   border-radius: $border_radius;
-  padding: $spacing-md;
+  // padding: $spacing-md;
+  width : 85%;
+  
 }
 
 
 
 .listing_header {
   display: grid;
-  grid-template-columns: 100px 1fr 1fr 1fr 64px;
+  grid-template-columns: 50px 1fr 1fr 1fr 64px;
   padding: $spacing-sm;
-  background-color: $accent_color;
+
+  background-color: $primary_mature;
   color: $primary_color;
-  border-radius: $border_radius;
-  margin-bottom: $spacing-md;
+  border-radius: 16px 16px 0px 0px;
+  // margin-bottom: $spacing-md;
   font-weight: 600;
   border: 1px solid white;
 
@@ -32,54 +35,69 @@
 }
 
 .listing_body {
-  height : 508px;
+  height : 80%;
   overflow-y: auto; /* Enable vertical scrolling */
   scrollbar-width: thin; /* For Firefox */
   scrollbar-color: $primary_color $secondary_color; 
-  border-left : 1px solid white;
+  // border-left : 1px solid white;
   .row {
     display: grid;
-    grid-template-columns: 100px 1fr 1fr 1fr 64px;
+    grid-template-columns: 50px 1fr 1fr 1fr 64px;
     align-items: center;
 
-    
-    padding: 0px 12px;
+        border-radius : 8px;
+    // padding: 0px 12px;
    
     // padding: 12px 4px;
-    border-radius: 16px;
+    // border-radius: 8px;
 
     span {
-      border-radius: 16px;
+      // border-radius: 16px;
       background-color:#3E3A3E;
       display: flex;
       text-align: center;
       justify-content: center;
-      border: 1px solid white; // Add border for inner cells
+  
       height: 40px;
       align-items: center;
       color: white;
       // padding: 8px;
       font-size: 0.75rem;
-      margin-bottom: 12px;
-      width: 95%;
+      // margin-bottom: 12px;
+      width: 100%;
 
    border-bottom : 1px solid white;
+
   
     }
     span:first-child {
-      border: none; /* Remove border for the first column */
-      background-color: transparent; /* Optional: Make it fully transparent */
+
+      background-color:#3E3A3E; /* Optional: Make it fully transparent */
       justify-content: center; /* Align image to the left */
       // padding-left : 16px;i
       // width:70%;
+
+     
+    }
+
+
+    span:first-child {
+
+      background-color:#3E3A3E; /* Optional: Make it fully transparent */
+      justify-content: center; /* Align image to the left */
+      // padding-left : 16px;i
+      // width:70%;
+      // border-radius : 8px 8px 0px 0px; 
     }
     img {
-      width: 40px;
-      height: 40px;
-      border-radius: 16px;
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
       margin-left: $spacing-sm;
     }
   }
+ 
 
 
 }
+
