@@ -5,7 +5,7 @@ import styles from "@/components/layouts/ListingLayout.module.scss";
 import TableHeader from "@/components/listing/TableHeader.jsx";
 import { useState } from "react";
 
-const sampleEmployees = Array.from({ length: 16 }, (_, index) => {
+const sampleEmployees = Array.from({ length: 30 }, (_, index) => {
   if (index % 3 === 0) {
     return {
       name: "Jack",

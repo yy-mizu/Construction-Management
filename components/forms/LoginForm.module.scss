@@ -6,9 +6,9 @@
   justify-content: center;
   align-items: center;
   // background-color: $accent_color;
-  background-image: url('/public/logos/Background.jpg');
+  background-image: url("/public/logos/Background.jpg");
   background-size: cover;
-  background-repeat: no-repeat; 
+  background-repeat: no-repeat;
   background-position: center;
   width: 100%;
   min-height: 100vh;
@@ -19,7 +19,7 @@
   display: flex;
   width: 70%;
   height: 70vh;
-  
+
   background-color: $primary_color;
   border: 2px solid $border_color;
   border-radius: $border_radius;
@@ -160,7 +160,7 @@
   button {
     margin-top: $spacing-lg;
     padding: $button_padding;
-    background-color: $login_btn;
+    // background-color: $login_btn;
     color: $primary_color;
     border-radius: $border_radius;
     font-weight: 700;
