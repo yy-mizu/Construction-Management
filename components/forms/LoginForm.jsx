@@ -11,13 +11,13 @@ export default function Login() {
   const validateEmail = (email) => {
     // Basic email validation regex
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email) return "Email is required.";
+    if (!email.trim()) return "Email is required.";
     if (!emailRegex.test(email)) return "Invalid email format.";
     return "";
   };
 
   const validatePassword = (password) => {
-    if (!password) return "Password is required.";
+    if (!password.trim()) return "Password is required.";
     if (password.length < 6) return "Password must be at least 6 characters.";
     return "";
   };
@@ -31,20 +31,22 @@ export default function Login() {
       setErrors({ email: emailError, password: passwordError });
     } else {
       setErrors({ email: "", password: "" });
-      // Handle login logic here
+      // Handle login logic here (e.g., API call)
       console.log("Form submitted:", { email, password });
+      alert("Login Successful!");
     }
   };
+
   return (
     <div className={styles.loginWrapper}>
       <div className={styles.loginContainer}>
         {/* Left Side - Desktop */}
         <div className={styles.leftBox}>
           <Image
-            src="/logos/image_20250103_14 (2).png"
+            src="/logos/Main_logo.png"
             alt="Construction Logo"
-            width={200}
-            height={150}
+            width={240}
+            height={210}
             priority
           />
           <div>
@@ -60,7 +62,7 @@ export default function Login() {
             <h2>Ready To Be Onboard?</h2>
           </div>
           <Image
-            src="/logos/image_20250103_14 (2).png"
+            src="/logos/Main_logo.png"
             alt="Construction Logo"
             width={100}
             height={50}
@@ -74,7 +76,7 @@ export default function Login() {
           <div className={styles.rightBoxHeader}>
             <h3>Login</h3>
             <Image
-              src="/logos/image_20250103_14 (2).png"
+              src="/logos/Main_logo.png"
               alt="Construction Logo"
               width={80}
               height={40}
@@ -100,7 +102,7 @@ export default function Login() {
               <input
                 type="password"
                 id="password"
-                placeholder="........."
+                placeholder="********"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
