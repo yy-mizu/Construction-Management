@@ -4,13 +4,7 @@ import SearchPanel from "@/components/listing/SearchPanel.jsx";
 import styles from "@/components/layouts/ListingLayout.module.scss";
 import TableHeader from "@/components/listing/TableHeader.jsx";
 import { useState } from "react";
-// Sample data - replace with actual data fetching
-// const sampleEmployees = Array(16).fill({
-//   name: "Jack",
-//   email: "jack@mail.com",
-//   team: "Team-One",
-// });
-// Updated sample data with both Jack and Sithu
+
 const sampleEmployees = Array.from({ length: 16 }, (_, index) => {
   if (index % 3 === 0) {
     return {
