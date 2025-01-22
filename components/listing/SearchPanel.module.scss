@@ -85,3 +85,19 @@
     height: 20px;
   }
 }
+
+.filter_tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  margin: 4px;
+  background-color: $primary_color;
+  border-radius: 16px;
+  font-size: 14px;
+  color: $primary_mature;
+
+  svg {
+    margin-left: 4px;
+    cursor: pointer;
+  }
+}

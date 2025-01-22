@@ -113,6 +113,7 @@ export default function EmployeesPage() {
           <SearchPanel
             onSearch={handleSearchChange}
             onFilterChange={handleFilterChange}
+            filters={filters}
           />
         </div>
       </div>

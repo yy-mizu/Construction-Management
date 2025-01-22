@@ -1,11 +1,10 @@
-@import "./variables.scss";
-@import "./mixin.scss";
+@import "../../styles/variables.scss";
+@import "../../styles/mixin.scss";
 
 .loginWrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  // background-color: $accent_color;
   background-image: url("../../public/logos/c_backgroung.png");
   background-size: cover;
   background-repeat: no-repeat;
