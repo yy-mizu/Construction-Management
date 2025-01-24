@@ -1,8 +1,8 @@
 import { ImageIcon, MoreHorizontal, ArrowUpDown } from "lucide-react";
 import { useState } from "react";
-import styles from "./EmployeeList.module.scss";
+import styles from "./VehicleList.module.scss";
 
-export default function EmployeeList({
+export default function VehicleList({
   employees = [],
   retirees = [],
   activeList,
@@ -34,19 +34,7 @@ export default function EmployeeList({
           </button>
         </span>
         <span>
-          Email
-          <button onClick={handleSort} className={styles.sort_button}>
-            <ArrowUpDown />
-          </button>
-        </span>
-        <span>
-          Phone
-          <button onClick={handleSort} className={styles.sort_button}>
-            <ArrowUpDown />
-          </button>
-        </span>
-        <span>
-          Assigned Task
+          Vehicle Inspection Date
           <button onClick={handleSort} className={styles.sort_button}>
             <ArrowUpDown />
           </button>
@@ -58,13 +46,7 @@ export default function EmployeeList({
           </button>
         </span>
         <span>
-          Role
-          <button onClick={handleSort} className={styles.sort_button}>
-            <ArrowUpDown />
-          </button>
-        </span>
-        <span>
-          Status
+          Display Name
           <button onClick={handleSort} className={styles.sort_button}>
             <ArrowUpDown />
           </button>
@@ -73,22 +55,19 @@ export default function EmployeeList({
       </div>
 
       <div className={styles.listing_body}>
-        {sortedList.map((person, index) => (
+        {sortedList.map((vehicle, index) => (
           <div key={index} className={styles.row}>
             <span>
               {/* <ImageIcon /> */}
               <img
-                src={person.image || "/logos/image_20250103_14.png"}
-                alt={person.name}
+                src={vehicle.image || "/logos/image_20250103_14.png"}
+                alt={vehicle.name}
               />
             </span>
-            <span>{person.name}</span>
-            <span>{person.email}</span>
-            <span>{person.phone}</span>
-            <span>{person.assignedTask}</span>
-            <span>{person.team}</span>
-            <span>{person.role}</span>
-            <span>{person.status}</span>
+            <span>{vehicle.name}</span>
+            <span>{vehicle.InspectionDate}</span>
+            <span>{vehicle.team}</span>
+            <span>{vehicle.displayName}</span>
             <span>
               <MoreHorizontal />
             </span>

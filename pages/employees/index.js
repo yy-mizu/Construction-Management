@@ -105,15 +105,16 @@ export default function EmployeesPage() {
           activeTab={activeTab}
           handleTabChange={handleTabChange}
           activeList={activeList}
+          context="employees"
         />
 
         <div className={styles.content_container}>
-          {/* <EmployeeList employees={sampleEmployees} activeList={activeList} /> */}
           <EmployeeList employees={sampleEmployees} activeList={filteredList} />
           <SearchPanel
             onSearch={handleSearchChange}
             onFilterChange={handleFilterChange}
             filters={filters}
+            context="employees"
           />
         </div>
       </div>
