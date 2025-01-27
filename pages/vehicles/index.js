@@ -23,8 +23,8 @@ const sampleVehicles = Array.from({ length: 30 }, (_, index) => {
   } else {
     return {
       name: "Tesla",
-      InspectionDate: "1-1-2025",
-      displayName: "Honda",
+      InspectionDate: "12-12-2025",
+      displayName: "Tesla",
       team: "Team-Three",
     };
   }
@@ -72,15 +72,25 @@ export default function VehiclesPage() {
   const activeList =
     activeTab === "vehicles" ? sampleVehicles : scrappedVehicles;
 
+  // const filteredList = activeList.filter((vehicle) => {
+  //   return (
+  //     (filters.team === "" || vehicle.team === filters.team) &&
+  //     (filters.role === "" || vehicle.role === filters.role) &&
+  //     (filters.status === "" || vehicle.status === filters.status) &&
+  //     (searchTerm === "" ||
+  //       vehicle.name.toLowerCase().includes(searchTerm) ||
+  //       vehicle.email.toLowerCase().includes(searchTerm) ||
+  //       vehicle.phone.includes(searchTerm))
+  //   );
+  // });
+
   const filteredList = activeList.filter((vehicle) => {
     return (
       (filters.team === "" || vehicle.team === filters.team) &&
-      (filters.role === "" || vehicle.role === filters.role) &&
-      (filters.status === "" || vehicle.status === filters.status) &&
       (searchTerm === "" ||
-        vehicle.name.toLowerCase().includes(searchTerm) ||
-        vehicle.email.toLowerCase().includes(searchTerm) ||
-        vehicle.phone.includes(searchTerm))
+        (vehicle.name && vehicle.name.toLowerCase().includes(searchTerm)) ||
+        (vehicle.displayName &&
+          vehicle.displayName.toLowerCase().includes(searchTerm)))
     );
   });
 
