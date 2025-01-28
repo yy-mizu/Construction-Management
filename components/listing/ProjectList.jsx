@@ -2,11 +2,7 @@ import { ImageIcon, MoreHorizontal, ArrowUpDown } from "lucide-react";
 import { useState } from "react";
 import styles from "./ProjectList.module.scss";
 
-export default function ProjectList({
-  projects = [],
-  retirees = [],
-  activeList,
-}) {
+export default function ProjectList({ projects = [], activeList }) {
   const [sortOrder, setSortOrder] = useState("asc");
 
   const handleSort = () => {
@@ -15,9 +11,9 @@ export default function ProjectList({
 
   const sortedList = [...activeList].sort((a, b) => {
     if (sortOrder === "asc") {
-      return a.name.localeCompare(b.name);
+      return a.businessPartner.localeCompare(b.businessPartner);
     } else {
-      return b.name.localeCompare(a.name);
+      return b.businessPartner.localeCompare(a.businessPartner);
     }
   });
 
@@ -28,15 +24,13 @@ export default function ProjectList({
           <ImageIcon />
         </span>
         <span>
-          Business <br />Pertaner
-          
+          Business Partner
           <button onClick={handleSort} className={styles.sort_button}>
             <ArrowUpDown />
           </button>
         </span>
         <span>
-        Customer <br />
-        Representative
+          Customer Representative
           <button onClick={handleSort} className={styles.sort_button}>
             <ArrowUpDown />
           </button>
@@ -48,16 +42,13 @@ export default function ProjectList({
           </button>
         </span>
         <span>
-        Site Address <br />
-        (City)
+          Site Address (City)
           <button onClick={handleSort} className={styles.sort_button}>
             <ArrowUpDown />
           </button>
         </span>
-
         <span>
-        Date <br />
-        (City)
+          Date
           <button onClick={handleSort} className={styles.sort_button}>
             <ArrowUpDown />
           </button>
@@ -69,17 +60,16 @@ export default function ProjectList({
         {sortedList.map((project, index) => (
           <div key={index} className={styles.row}>
             <span>
-              {/* <ImageIcon /> */}
               <img
                 src={project.image || "/logos/image_20250103_14.png"}
-                alt={project.name}
+                alt={project.businessPartner}
               />
             </span>
-            <span>{project.businespertaner}</span>
-            <span>{project.customer}</span>
-            <span>{project.staff}</span>
-            <span>{project.site}</span>
-            <span>{project.date}</span>
+            <span>{project.businessPartner}</span>
+            <span>{project.customerRep}</span>
+            <span>{project.staffName}</span>
+            <span>{project.siteAddress}</span>
+            <span>{project.inspectionDate}</span>
             <span>
               <MoreHorizontal />
             </span>

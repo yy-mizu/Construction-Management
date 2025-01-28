@@ -1,0 +1,188 @@
+.loginWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../public/logos/c_backgroung.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  min-height: 100vh;
+  color: #fbf7f4;
+}
+
+.loginContainer {
+  display: flex;
+  width: 70%;
+  height: 70vh;
+  background-color: #221e22;
+  border: 2px solid #fbf7f4;
+  border-radius: 16px;
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+@media (max-width: 830px) {
+  .loginContainer {
+    width: 80%;
+    flex-direction: column;
+    align-items: center;
+    height: 85vh;
+  }
+}
+@media (max-width: 575px) {
+  .loginContainer {
+    justify-content: center;
+    align-items: center;
+    border-radius: 0;
+    background: none;
+    border: none;
+    width: 100%;
+    height: 100vh;
+  }
+}
+
+.leftBox {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 32px;
+}
+@media (max-width: 830px) {
+  .leftBox {
+    display: none;
+  }
+}
+.leftBox h1 {
+  font-size: 2vw;
+  margin-bottom: 4px;
+}
+.leftBox h2 {
+  font-size: 1.3vw;
+}
+
+.leftBoxResponsive {
+  display: none;
+  padding: 24px;
+  background-color: #221e22;
+}
+@media (max-width: 830px) {
+  .leftBoxResponsive {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 70%;
+    height: 15vh;
+  }
+  .leftBoxResponsive img {
+    width: 100px;
+    height: auto;
+  }
+  .leftBoxResponsive h1 {
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+  .leftBoxResponsive h2 {
+    font-size: 16px;
+  }
+}
+@media (max-width: 575px) {
+  .leftBoxResponsive {
+    display: none;
+  }
+}
+
+.rightBox {
+  width: 40%;
+  height: 77%;
+  margin: 64px 44px;
+  background-color: #1c1a1a;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  border: 1px solid #fbf7f4;
+  border-radius: 16px;
+}
+@media (max-width: 830px) {
+  .rightBox {
+    width: 70%;
+    height: 65vh;
+    padding: 24px;
+    margin: 0;
+  }
+}
+
+.rightBoxHeader {
+  display: none;
+}
+@media (max-width: 575px) {
+  .rightBoxHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    margin: 0 0 0 0;
+    width: 100%;
+  }
+  .rightBoxHeader img {
+    width: 100px;
+    height: auto;
+  }
+  .rightBoxHeader h3 {
+    font-size: 1.6rem;
+  }
+  .rightBoxHeader h4 {
+    font-size: 1.5rem;
+  }
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.loginForm label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+.loginForm input {
+  width: 100%;
+  padding: 8px;
+  background-color: #221e22;
+  border: 1px solid #fbf7f4;
+  border-radius: 16px;
+  color: #fbf7f4;
+  margin-bottom: 16px;
+}
+.loginForm input::placeholder {
+  color: rgba(251, 247, 244, 0.5);
+}
+.loginForm button {
+  margin-top: 24px;
+  padding: 10px 25px;
+  background-color: #00e28f;
+  color: #221e22;
+  border-radius: 16px;
+  font-weight: 700;
+  transition: opacity 0.2s ease;
+}
+.loginForm button:hover {
+  opacity: 0.9;
+}
+@media (max-width: 525px) {
+  .loginForm .loginForm {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.error {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 5px;
+}/*# sourceMappingURL=LoginForm.module.css.map */

@@ -5,56 +5,60 @@ import styles from "@/components/layouts/ListingLayout.module.scss";
 import TableHeader from "@/components/listing/TableHeader.jsx";
 import { useState } from "react";
 
-const sampleVehicles = Array.from({ length: 30 }, (_, index) => {
+const sampleProjects = Array.from({ length: 30 }, (_, index) => {
   if (index % 3 === 0) {
     return {
-      name: "Toyota",
-      InspectionDate: "1-1-2025",
-      displayName: "Toyota",
-      team: "Team-One",
+      businessPartner: "ABC Corp",
+      customerRep: "John Doe",
+      staffName: "Alice",
+      siteAddress: "New York",
+      inspectionDate: "2025-01-01",
     };
   } else if (index % 3 === 1) {
     return {
-      name: "Honda",
-      InspectionDate: "1-1-2025",
-      displayName: "Honda",
-      team: "Team-Two",
+      businessPartner: "XYZ Ltd",
+      customerRep: "Jane Smith",
+      staffName: "Bob",
+      siteAddress: "Los Angeles",
+      inspectionDate: "2025-02-15",
     };
   } else {
     return {
-      name: "Tesla",
-      InspectionDate: "1-1-2025",
-      displayName: "Honda",
-      team: "Team-Three",
+      businessPartner: "DEF Inc",
+      customerRep: "Michael Johnson",
+      staffName: "Charlie",
+      siteAddress: "Chicago",
+      inspectionDate: "2025-03-10",
     };
   }
 });
 
-const scrappedVehicles = Array.from({ length: 10 }, (_, index) => {
+const archivedProjects = Array.from({ length: 10 }, (_, index) => {
   if (index % 2 === 0) {
     return {
-      name: "Audi",
-      InspectionDate: "1-1-2025",
-      displayName: "Honda",
-      team: "Team-Three",
+      businessPartner: "LMN Group",
+      customerRep: "Sarah Lee",
+      staffName: "Daniel",
+      siteAddress: "Houston",
+      inspectionDate: "2024-12-20",
     };
   } else {
     return {
-      name: "BMW",
-      InspectionDate: "1-1-2025",
-      displayName: "Honda",
-      team: "Team-Two",
+      businessPartner: "PQR Holdings",
+      customerRep: "Tom Williams",
+      staffName: "Emma",
+      siteAddress: "San Francisco",
+      inspectionDate: "2024-11-05",
     };
   }
 });
 
-export default function VehiclesPage() {
-  const [activeTab, setActiveTab] = useState("vehicles");
+export default function ProjectsPage() {
+  const [activeTab, setActiveTab] = useState("projects");
   const [searchTerm, setSearchTerm] = useState("");
   const [filters, setFilters] = useState({
-    team: "",
-    role: "",
-    status: "",
+    businessPartner: "",
+    siteAddress: "",
   });
 
   const handleTabChange = (tab) => {
@@ -69,18 +73,17 @@ export default function VehiclesPage() {
     setFilters((prev) => ({ ...prev, [field]: value }));
   };
 
-  const activeList =
-    activeTab === "vehicles" ? sampleVehicles : scrappedVehicles;
+  const activeList = activeTab === "projects" ? sampleProjects : archivedProjects;
 
-  const filteredList = activeList.filter((vehicle) => {
+  const filteredList = activeList.filter((project) => {
     return (
-      (filters.team === "" || vehicle.team === filters.team) &&
-      (filters.role === "" || vehicle.role === filters.role) &&
-      (filters.status === "" || vehicle.status === filters.status) &&
+      (filters.businessPartner === "" || project.businessPartner === filters.businessPartner) &&
+      (filters.siteAddress === "" || project.siteAddress === filters.siteAddress) &&
       (searchTerm === "" ||
-        vehicle.name.toLowerCase().includes(searchTerm) ||
-        vehicle.email.toLowerCase().includes(searchTerm) ||
-        vehicle.phone.includes(searchTerm))
+        project.businessPartner.toLowerCase().includes(searchTerm) ||
+        project.customerRep.toLowerCase().includes(searchTerm) ||
+        project.staffName.toLowerCase().includes(searchTerm) ||
+        project.siteAddress.toLowerCase().includes(searchTerm))
     );
   });
 
@@ -91,16 +94,16 @@ export default function VehiclesPage() {
           activeTab={activeTab}
           handleTabChange={handleTabChange}
           activeList={activeList}
-          context="vehicles"
+          context="projects"
         />
 
         <div className={styles.content_container}>
-          <ProjectList employees={sampleVehicles} activeList={filteredList} />
+          <ProjectList projects={sampleProjects} activeList={filteredList} />
           <SearchPanel
             onSearch={handleSearchChange}
             onFilterChange={handleFilterChange}
             filters={filters}
-            context="vehicles"
+            context="projects"
           />
         </div>
       </div>
