@@ -130,7 +130,7 @@ export default function SearchPanel({ onSearch, onFilterChange, filters, context
                 </div>
               </div>
 
-              <div>
+              {/* <div>
                 <label>Project Status</label>
                 <div className={styles.search_input}>
                   <CheckCircle />
@@ -144,7 +144,7 @@ export default function SearchPanel({ onSearch, onFilterChange, filters, context
                     <option value="On Hold">On Hold</option>
                   </select>
                 </div>
-              </div>
+              </div> */}
             </>
           )}
         </div>
