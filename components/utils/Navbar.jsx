@@ -26,7 +26,7 @@ export default function Navbar() {
       </div>
 
       <div className={styles.navbar_center}>
-        <button className={`${styles.menu_button} ${isActive('/')}`} onClick={() => router.push('/')}>
+        <button className={`${styles.menu_button} ${isActive('/main')}`} onClick={() => router.push('/main')}>
           <Home />
           <span>Home</span>
         </button>
