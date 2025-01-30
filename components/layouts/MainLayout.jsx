@@ -5,7 +5,7 @@ import styles from './MainLayout.module.scss'
 export default function Layout({ children }) {
   return (
     <div className={styles.dashboard}>
-      <Sidebar />
+      {/* <Sidebar /> */}
       <div className={styles.main_content}>
         <Navbar />
         {children}

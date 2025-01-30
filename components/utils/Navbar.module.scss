@@ -1,5 +1,6 @@
 @import './variables.scss';
 
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -8,18 +9,102 @@
   background-color: black;
   color: $text_color;
   height: 56px;
-  border-bottom : 2px solid $text_color;
   position: sticky;
   top: 0;
   z-index: 1000;
+
+  svg
+  {
+    width : 16px;
+  }
 }
 
-.navbar_left,
+.navbar_left {
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+
+  .search {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    background: #221e22;
+    padding: $spacing-xs $spacing-md;
+    border-radius: $border_radius;
+
+    input {
+      background: transparent;
+      border: none;
+      color: $text_color;
+      outline: none;
+    }
+
+    svg {
+      width: 16px;
+    }
+  }
+}
+
+.navbar_center {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  .menu_button {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    background: none;
+    border: none;
+    color: $text_color;
+    font-size: 12px;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
+
+    &:hover {
+      color: $accent_color;
+    }
+  }
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+
+    &:hover .dropdown_content {
+      display: block;
+    }
+  }
+
+  .dropdown_content {
+    display: none;
+    position: absolute;
+    background: black;
+    border: 1px solid $text_color;
+    top: 100%;
+    left: 0;
+    min-width: 160px;
+    z-index: 1000;
+
+    button {
+      width: 100%;
+      text-align: left;
+      padding: $spacing-xs;
+      display: flex;
+      align-items: center;
+      gap: $spacing-xs;
+
+      &:hover {
+        background: $accent_color;
+        color: black;
+      }
+    }
+  }
+}
+
 .navbar_right {
   display: flex;
   align-items: center;
   gap: $spacing-md;
-  align-items: center;
 }
 
 .icon_button {
@@ -28,16 +113,37 @@
   color: $text_color;
   cursor: pointer;
   padding: $spacing-xs;
-  
+
   &:hover {
     color: $accent_color;
   }
 }
 
 .profile {
-  padding: $spacing-xs $spacing-md;
-  background-color: $accent_color;
-  color: $primary_color;
-  border-radius: $border_radius;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid $text_color;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
+@media (max-width: 1024px) {
+  .navbar_center {
+    gap: 15px;
+  }
+}
+
+.menu_button.active {
+  background: linear-gradient(135deg, #6E8FB6, #B0BAC6); // Curved gradient highlight
+  color: white;
+  font-weight: 600;
+  border-radius: -24px; // Curved pill shape
+  box-shadow: 0px 4px 10px rgba(110, 143, 182, 0.3);
+  transform: scale(1.05);
+}
