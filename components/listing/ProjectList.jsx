@@ -53,6 +53,8 @@ export default function ProjectList({ projects = [], activeList }) {
             <ArrowUpDown />
           </button>
         </span>
+
+        <span>Status</span>
         <span>Info</span>
       </div>
 
@@ -70,6 +72,7 @@ export default function ProjectList({ projects = [], activeList }) {
             <span>{project.staffName}</span>
             <span>{project.siteAddress}</span>
             <span>{project.inspectionDate}</span>
+            <span>{project.status}</span>
             <span>
               <MoreHorizontal />
             </span>

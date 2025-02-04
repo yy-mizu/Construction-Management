@@ -13,6 +13,7 @@ const sampleProjects = Array.from({ length: 30 }, (_, index) => {
       staffName: "Alice",
       siteAddress: "New York",
       inspectionDate: "2025-01-01",
+      status: "Active", // Changed "Status" to "status"
     };
   } else if (index % 3 === 1) {
     return {
@@ -21,6 +22,7 @@ const sampleProjects = Array.from({ length: 30 }, (_, index) => {
       staffName: "Bob",
       siteAddress: "Los Angeles",
       inspectionDate: "2025-02-15",
+      status: "Inactive", // Changed "Status" to "status"
     };
   } else {
     return {
@@ -29,9 +31,11 @@ const sampleProjects = Array.from({ length: 30 }, (_, index) => {
       staffName: "Charlie",
       siteAddress: "Chicago",
       inspectionDate: "2025-03-10",
+      status: "On Leave", // Changed "Status" to "status"
     };
   }
 });
+
 
 const archivedProjects = Array.from({ length: 10 }, (_, index) => {
   if (index % 2 === 0) {
@@ -41,6 +45,7 @@ const archivedProjects = Array.from({ length: 10 }, (_, index) => {
       staffName: "Daniel",
       siteAddress: "Houston",
       inspectionDate: "2024-12-20",
+      status:"Active"
     };
   } else {
     return {
@@ -49,6 +54,7 @@ const archivedProjects = Array.from({ length: 10 }, (_, index) => {
       staffName: "Emma",
       siteAddress: "San Francisco",
       inspectionDate: "2024-11-05",
+      status:"Inactive"
     };
   }
 });
@@ -77,15 +83,26 @@ export default function ProjectsPage() {
 
   const filteredList = activeList.filter((project) => {
     return (
-      (filters.businessPartner === "" || project.businessPartner === filters.businessPartner) &&
-      (filters.siteAddress === "" || project.siteAddress === filters.siteAddress) &&
-      (searchTerm === "" ||
-        project.businessPartner.toLowerCase().includes(searchTerm) ||
-        project.customerRep.toLowerCase().includes(searchTerm) ||
-        project.staffName.toLowerCase().includes(searchTerm) ||
-        project.siteAddress.toLowerCase().includes(searchTerm))
+      (!filters.businessPartner || 
+        project.businessPartner?.toLowerCase().includes(filters.businessPartner.toLowerCase())) &&
+      (!filters.customerRep || 
+        project.customerRep?.toLowerCase().includes(filters.customerRep.toLowerCase())) &&
+      (!filters.staffName || 
+        project.staffName?.toLowerCase().includes(filters.staffName.toLowerCase())) &&
+      (!filters.siteAddress || 
+        project.siteAddress?.toLowerCase().includes(filters.siteAddress.toLowerCase())) &&
+      (!filters.status || project.status === filters.status) && // Ensure status filtering works
+      (!searchTerm || (
+        project.businessPartner?.toLowerCase().includes(searchTerm) ||
+        project.customerRep?.toLowerCase().includes(searchTerm) ||
+        project.staffName?.toLowerCase().includes(searchTerm) ||
+        project.siteAddress?.toLowerCase().includes(searchTerm)
+      ))
     );
   });
+  
+  
+
 
   return (
     <MainLayout>
@@ -105,6 +122,7 @@ export default function ProjectsPage() {
             filters={filters}
             context="projects"
           />
+
         </div>
       </div>
     </MainLayout>

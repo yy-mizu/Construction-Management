@@ -104,7 +104,7 @@ export default function SearchPanel({ onSearch, onFilterChange, filters, context
                 <div className={styles.search_input}>
                   <Users />
                   <input
-                    type="text"
+                    type="text" 
                     placeholder="Enter Display Name..."
                     onChange={(e) => onFilterChange("displayName", e.target.value)}
                     value={filters.displayName}
@@ -127,6 +127,34 @@ export default function SearchPanel({ onSearch, onFilterChange, filters, context
                     onChange={(e) => onFilterChange("staffName", e.target.value)}
                     value={filters.staffName}
                   />
+                </div>
+              </div>
+
+              <div>
+                <label>Inspection Date</label>
+                <div className={styles.search_input}>
+                  <Calendar />
+                  <input
+                    type="date"
+                    onChange={(e) => onFilterChange("inspectionDate", e.target.value)}
+                    value={filters.inspectionDate}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label>Status</label>
+                <div className={styles.search_input}>
+                  <CheckCircle />
+                  <select
+                    onChange={(e) => onFilterChange("status", e.target.value)}
+                    value={filters.status}
+                  >
+                    <option value="">Select Status</option>
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                    <option value="On Leave">On Leave</option>
+                  </select>
                 </div>
               </div>
 
