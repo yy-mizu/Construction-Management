@@ -84,6 +84,22 @@ export default function EmployeesPage() {
     setFilters((prev) => ({ ...prev, [field]: value }));
   };
 
+//   const [isModalOpen, setIsModalOpen] = useState(false);
+// const [selectedContext, setSelectedContext] = useState("employees");
+// const [selectedData, setSelectedData] = useState(null);
+// const handleOpenModal = (context, data) => {
+//   setSelectedContext(context);
+//   setSelectedData(data);
+//   setIsModalOpen(true);
+// };
+
+// const handleCloseModal = () => {
+//   setIsModalOpen(false);
+//   setSelectedData(null);
+// };
+
+
+
   const activeList = activeTab === "employees" ? sampleEmployees : retirees;
 
   const filteredList = activeList.filter((person) => {

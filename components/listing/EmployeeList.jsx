@@ -1,74 +1,46 @@
 import { ImageIcon, MoreHorizontal, ArrowUpDown } from "lucide-react";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import styles from "./EmployeeList.module.scss";
 
-export default function EmployeeList({
-  employees = [],
-  retirees = [],
-  activeList,
-}) {
-  const [sortOrder, setSortOrder] = useState("asc");
+export default function EmployeeList({ activeList = [] }) {
+  const [sortConfig, setSortConfig] = useState({ key: "name", order: "asc" });
 
-  const handleSort = () => {
-    setSortOrder((prevOrder) => (prevOrder === "asc" ? "desc" : "asc"));
+  const handleSort = (key) => {
+    setSortConfig((prev) => ({
+      key,
+      order: prev.key === key && prev.order === "asc" ? "desc" : "asc",
+    }));
   };
 
-  const sortedList = [...activeList].sort((a, b) => {
-    if (sortOrder === "asc") {
-      return a.name.localeCompare(b.name);
-    } else {
-      return b.name.localeCompare(a.name);
-    }
-  });
+  const sortedList = useMemo(() => {
+    return [...activeList].sort((a, b) => {
+      if (!a[sortConfig.key] || !b[sortConfig.key]) return 0; // Prevent sorting errors if field is missing
+      return sortConfig.order === "asc"
+        ? a[sortConfig.key].toString().localeCompare(b[sortConfig.key].toString())
+        : b[sortConfig.key].toString().localeCompare(a[sortConfig.key].toString());
+    });
+  }, [activeList, sortConfig]);
+
+  const SortableHeader = ({ label, sortKey }) => (
+    <span>
+      {label}
+      <button onClick={() => handleSort(sortKey)} className={styles.sort_button}>
+        <ArrowUpDown />
+      </button>
+    </span>
+  );
 
   return (
     <div className={styles.listing}>
       <div className={styles.listing_header}>
-        <span>
-          <ImageIcon />
-        </span>
-        <span>
-          Name
-          <button onClick={handleSort} className={styles.sort_button}>
-            <ArrowUpDown />
-          </button>
-        </span>
-        <span>
-          Email
-          <button onClick={handleSort} className={styles.sort_button}>
-            <ArrowUpDown />
-          </button>
-        </span>
-        <span>
-          Phone
-          <button onClick={handleSort} className={styles.sort_button}>
-            <ArrowUpDown />
-          </button>
-        </span>
-        <span>
-          Assigned Task
-          <button onClick={handleSort} className={styles.sort_button}>
-            <ArrowUpDown />
-          </button>
-        </span>
-        <span>
-          Team
-          <button onClick={handleSort} className={styles.sort_button}>
-            <ArrowUpDown />
-          </button>
-        </span>
-        <span>
-          Role
-          <button onClick={handleSort} className={styles.sort_button}>
-            <ArrowUpDown />
-          </button>
-        </span>
-        <span>
-          Status
-          <button onClick={handleSort} className={styles.sort_button}>
-            <ArrowUpDown />
-          </button>
-        </span>
+        <span><ImageIcon /></span>
+        <SortableHeader label="Name" sortKey="name" />
+        <SortableHeader label="Email" sortKey="email" />
+        <SortableHeader label="Phone" sortKey="phone" />
+        <SortableHeader label="Assigned Task" sortKey="assignedTask" />
+        <SortableHeader label="Team" sortKey="team" />
+        <SortableHeader label="Role" sortKey="role" />
+        <SortableHeader label="Status" sortKey="status" />
         <span>Info</span>
       </div>
 
@@ -76,11 +48,7 @@ export default function EmployeeList({
         {sortedList.map((person, index) => (
           <div key={index} className={styles.row}>
             <span>
-              {/* <ImageIcon /> */}
-              <img
-                src={person.image || "/logos/image_20250103_14.png"}
-                alt={person.name}
-              />
+              <img src={person.image || "/logos/image_20250103_14.png"} alt={person.name} />
             </span>
             <span>{person.name}</span>
             <span>{person.email}</span>
@@ -89,9 +57,7 @@ export default function EmployeeList({
             <span>{person.team}</span>
             <span>{person.role}</span>
             <span>{person.status}</span>
-            <span>
-              <MoreHorizontal />
-            </span>
+            <span><MoreHorizontal /></span>
           </div>
         ))}
       </div>

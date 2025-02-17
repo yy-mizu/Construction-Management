@@ -16,15 +16,20 @@
   }
   
   .modalContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 20%;
     background: #221e22;
     color: #d9d9d9;
     padding: 20px 0px;
     border-radius: 16px;
-    width: 400px;
+    width: 50%;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     border : 2px solid white;
     font-size : 12px;
+    
   }
 
 
@@ -46,8 +51,9 @@
     justify-content: space-between;
     align-items: center;
     // margin-bottom: 20px;
-    border-top : 2px solid white;
+    // border-top : 2px solid white;
     border-radius : 16px;
+    width: 85%;
   
     // background-color: black;
   
