@@ -1,0 +1,116 @@
+.calendarContainer {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  color: #ffffff;
+  position: relative;
+}
+.calendarContainer .header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+.calendarContainer .header .monthTitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+.calendarContainer .dayHeaders {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 8px;
+}
+.calendarContainer .dayHeaders .dayHeader {
+  text-align: center;
+  padding: 12px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+}
+.calendarContainer .grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+.calendarContainer .grid .cell {
+  aspect-ratio: 1;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.02);
+}
+.calendarContainer .grid .cell:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.calendarContainer .grid .cell.currentMonth {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.calendarContainer .grid .cell.projectDay {
+  background: linear-gradient(45deg, rgba(74, 144, 226, 0.15), rgba(74, 144, 226, 0.25));
+  position: relative;
+}
+.calendarContainer .grid .cell.projectDay::after {
+  content: "";
+  position: absolute;
+  bottom: 6px;
+  width: 6px;
+  height: 6px;
+  background-color: #4a90e2;
+  border-radius: 50%;
+}
+.calendarContainer .grid .cell .date {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8);
+}
+.calendarContainer .projectModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.calendarContainer .projectModal .modalContent {
+  background-color: #1a1a1a;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  position: relative;
+}
+.calendarContainer .projectModal .modalContent h3 {
+  margin-top: 0;
+  color: #ffffff;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+.calendarContainer .projectModal .modalContent .details p {
+  margin: 0.5rem 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+}
+.calendarContainer .projectModal .modalContent .closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}/*# sourceMappingURL=Calendar.module.css.map */

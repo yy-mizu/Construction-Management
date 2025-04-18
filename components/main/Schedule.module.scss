@@ -1,0 +1,149 @@
+// Mixins
+@mixin flex {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+// Container for the month calendar
+.monthContainer {
+  background-color: #1e1e1e;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 2px solid #25e4c3;
+  color: #ffffff;
+  margin-top: 12px;
+}
+
+// Header with month name and navigation buttons
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  h3 {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  button {
+    background: none;
+    color: #25e4c3;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+
+    &:hover {
+      color: #1ec3a5;
+    }
+  }
+}
+
+// Grid for day cells
+.grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(31, 1fr);
+  gap: 0.5rem;
+}
+
+// Each day cell
+.day {
+  background-color: #2b2b2b;
+  border-radius: 0.75rem;
+  text-align: center;
+  border: 1px solid transparent;
+  transition: 0.2s;
+
+  .day-name {
+    font-size: 0.75rem;
+    color: #cccccc;
+  }
+
+  .day-number {
+    font-size: 1rem;
+  }
+
+  &.today {
+    background-color: #25e4c3;
+
+    .day-name,
+    .day-number {
+      color: #000000;
+    }
+  }
+
+  &.hasData {
+    border: 1px solid #25e4c3;
+    background-color: #ffffff;
+    color: #000;
+
+    .day-name,
+    .day-number {
+      color: #000;
+    }
+  }
+
+  &:hover {
+    border-color: #25e4c3;
+  }
+}
+
+// Main layout section below calendar
+.main {
+  @include flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  color: white;
+}
+
+// Container for the icons and counts
+.schedule_flex {
+  @include flex;
+  width: 50%;
+  flex-wrap: wrap;
+}
+
+// Icons with labels
+.nav_head {
+  @include flex;
+}
+
+// Add new button
+.import_btn {
+  background-color: white;
+  color: #2b2b2b;
+  width: 300px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+.day.hasData {
+  border: 1px solid #25e4c3;
+  background-color: #ffffff;
+  color: #000;
+
+  .day-name,
+  .day-number {
+    color: #000;
+  }
+}
+
+.selected {
+  background-color: #ffe100;
+  border: 2px solid #ffd700;
+
+  .day-name,
+  .day-number {
+    color: #000000;
+    font-weight: bold;
+  }
+}
