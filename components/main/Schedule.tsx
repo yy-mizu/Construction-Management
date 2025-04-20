@@ -4,6 +4,13 @@ import styles from "./Schedule.module.scss";
 import { Folder, Truck, Users, Plus } from "lucide-react";
 import ScheduleExist from "./Schedule/ScheduleExist";
 import ScheduleNoExist from "./Schedule/ScheduleNoExist";
+import Modal from "../modals/modal"; 
+
+// import headerStyles from "./TableHeader.module.scss";
+
+
+
+
 
 type ScheduleItem = {
   date: string;
@@ -46,6 +53,12 @@ const MonthView: React.FC = () => {
 
   const handlePrevMonth = () => setCurrentMonth(prev => prev.subtract(1, "month"));
   const handleNextMonth = () => setCurrentMonth(prev => prev.add(1, "month"));
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+const handleModalToggle = () => {
+  setIsModalOpen(prev => !prev);
+};
 
   return (
     <div>
@@ -96,15 +109,18 @@ const MonthView: React.FC = () => {
             <span>Staff Assigned : 0</span>
           </div>
         </div>
-        <div className={styles.import_btn}>
-          <Plus />
-          <span>Add new project</span>
-        </div>
+        <div className={styles.import_btn} onClick={handleModalToggle}>
+  <Plus />
+  <span>Add new project</span>
+</div>
       </div>
 
       <div>
         {hasSchedule ? <ScheduleExist /> : <ScheduleNoExist />}
       </div>
+
+      <Modal isOpen={isModalOpen} onClose={handleModalToggle} context="projects" data={undefined} />
+
     </div>
   );
 };

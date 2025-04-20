@@ -143,12 +143,12 @@ export default function DynamicModal({ isOpen, onClose, context, data }) {
           <>
             <h2 className={styles.modalHeader}>Vehicle Details</h2>
             <div className={styles.picRow}>
-                <div className={styles.profileImage}></div>
-                <div className={styles.profileActions}>
-                  <button className={styles.editProfile}>Edit Profile</button>
-                  <button className={styles.deleteProfile}>Delete Profile</button>
-                </div>
+              <div className={styles.profileImage}></div>
+              <div className={styles.profileActions}>
+                <button className={styles.editProfile}>Edit Profile</button>
+                <button className={styles.deleteProfile}>Delete Profile</button>
               </div>
+            </div>
 
             <form className={styles.form}>
               <div className={styles.formRow}>
@@ -196,12 +196,12 @@ export default function DynamicModal({ isOpen, onClose, context, data }) {
             <h2 className={styles.modalHeader}>Project Details</h2>
 
             <div className={styles.picRow}>
-                <div className={styles.profileImage}></div>
-                <div className={styles.profileActions}>
-                  <button className={styles.editProfile}>Edit Profile</button>
-                  <button className={styles.deleteProfile}>Delete Profile</button>
-                </div>
+              <div className={styles.profileImage}></div>
+              <div className={styles.profileActions}>
+                <button className={styles.editProfile}>Edit Profile</button>
+                <button className={styles.deleteProfile}>Delete Profile</button>
               </div>
+            </div>
 
             <form className={styles.form}>
               <div className={styles.formRow}>
@@ -246,6 +246,41 @@ export default function DynamicModal({ isOpen, onClose, context, data }) {
 
       default:
         return <p>Invalid context</p>;
+
+
+      case "objective":
+        return (
+          <>
+            <h2 className={styles.modalHeader}>Create Objective</h2>
+
+
+
+            <form className={styles.form}>
+              <div className={styles.formRow}>
+                <div className={styles.inputGroup}>
+                  <label>Objective Name</label>
+                  <input type="text" defaultValue={data?.objectiveName || ""} />
+                </div>
+                <div className={styles.inputGroup}>
+                  <label>Date</label>
+                  <input type="date" defaultValue={data?.date || ""} />
+                </div>
+              </div>
+
+              <div className={styles.formRow}>
+                <div className={styles.inputGroup}>
+                  <label>Note</label>
+                  <input type="text" defaultValue={data?.note || ""} />
+                </div>
+                
+              </div>
+
+              
+            </form>
+          </>
+        );
+
+
     }
   };
 
@@ -256,6 +291,7 @@ export default function DynamicModal({ isOpen, onClose, context, data }) {
         <div className={styles.actionButtons}>
           <button type="submit" className={styles.saveButton}>Save</button>
           <button type="button" className={styles.cancelButton} onClick={onClose}>Cancel</button>
+
         </div>
       </div>
     </div>
