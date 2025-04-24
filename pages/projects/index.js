@@ -1,65 +1,13 @@
-import MainLayout from "@/components/layouts/MainLayout.jsx";
+import { useEffect, useState } from "react";
 import ProjectList from "@/components/listing/ProjectList";
 import SearchPanel from "@/components/listing/SearchPanel.jsx";
-import styles from "@/components/layouts/ListingLayout.module.scss";
 import TableHeader from "@/components/listing/TableHeader.jsx";
-import { useState } from "react";
-
-const sampleProjects = Array.from({ length: 30 }, (_, index) => {
-  if (index % 3 === 0) {
-    return {
-      businessPartner: "ABC Corp",
-      customerRep: "John Doe",
-      staffName: "Alice",
-      siteAddress: "New York",
-      inspectionDate: "2025-01-01",
-      status: "Active", // Changed "Status" to "status"
-    };
-  } else if (index % 3 === 1) {
-    return {
-      businessPartner: "XYZ Ltd",
-      customerRep: "Jane Smith",
-      staffName: "Bob",
-      siteAddress: "Los Angeles",
-      inspectionDate: "2025-02-15",
-      status: "Inactive", // Changed "Status" to "status"
-    };
-  } else {
-    return {
-      businessPartner: "DEF Inc",
-      customerRep: "Michael Johnson",
-      staffName: "Charlie",
-      siteAddress: "Chicago",
-      inspectionDate: "2025-03-10",
-      status: "On Leave", // Changed "Status" to "status"
-    };
-  }
-});
-
-
-const archivedProjects = Array.from({ length: 10 }, (_, index) => {
-  if (index % 2 === 0) {
-    return {
-      businessPartner: "LMN Group",
-      customerRep: "Sarah Lee",
-      staffName: "Daniel",
-      siteAddress: "Houston",
-      inspectionDate: "2024-12-20",
-      status:"Active"
-    };
-  } else {
-    return {
-      businessPartner: "PQR Holdings",
-      customerRep: "Tom Williams",
-      staffName: "Emma",
-      siteAddress: "San Francisco",
-      inspectionDate: "2024-11-05",
-      status:"Inactive"
-    };
-  }
-});
+import MainLayout from "@/components/layouts/MainLayout.jsx";
+import styles from "@/components/layouts/ListingLayout.module.scss";
 
 export default function ProjectsPage() {
+  const [projects, setProjects] = useState([]);
+  const [archivedProjects, setArchivedProjects] = useState([]);
   const [activeTab, setActiveTab] = useState("projects");
   const [searchTerm, setSearchTerm] = useState("");
   const [filters, setFilters] = useState({
@@ -67,19 +15,14 @@ export default function ProjectsPage() {
     siteAddress: "",
   });
 
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
-  };
+  useEffect(() => {
+    fetch("http://localhost:2244/projects/list")
+      .then((res) => res.json())
+      .then((data) => setProjects(data))
+      .catch((err) => console.error("Error loading projects:", err));
+  }, []);
 
-  const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value.toLowerCase());
-  };
-
-  const handleFilterChange = (field, value) => {
-    setFilters((prev) => ({ ...prev, [field]: value }));
-  };
-
-  const activeList = activeTab === "projects" ? sampleProjects : archivedProjects;
+  const activeList = activeTab === "projects" ? projects : archivedProjects;
 
   const filteredList = activeList.filter((project) => {
     return (
@@ -91,7 +34,7 @@ export default function ProjectsPage() {
         project.staffName?.toLowerCase().includes(filters.staffName.toLowerCase())) &&
       (!filters.siteAddress || 
         project.siteAddress?.toLowerCase().includes(filters.siteAddress.toLowerCase())) &&
-      (!filters.status || project.status === filters.status) && // Ensure status filtering works
+      (!filters.status || project.status === filters.status) &&
       (!searchTerm || (
         project.businessPartner?.toLowerCase().includes(searchTerm) ||
         project.customerRep?.toLowerCase().includes(searchTerm) ||
@@ -100,29 +43,26 @@ export default function ProjectsPage() {
       ))
     );
   });
-  
-  
-
 
   return (
     <MainLayout>
       <div className={styles.content_wrapper}>
         <TableHeader
           activeTab={activeTab}
-          handleTabChange={handleTabChange}
+          handleTabChange={setActiveTab}
           activeList={activeList}
           context="projects"
         />
-
         <div className={styles.content_container}>
-          <ProjectList projects={sampleProjects} activeList={filteredList} />
+          <ProjectList projects={projects} activeList={filteredList} />
           <SearchPanel
-            onSearch={handleSearchChange}
-            onFilterChange={handleFilterChange}
+            onSearch={(e) => setSearchTerm(e.target.value.toLowerCase())}
+            onFilterChange={(field, value) =>
+              setFilters((prev) => ({ ...prev, [field]: value }))
+            }
             filters={filters}
             context="projects"
           />
-
         </div>
       </div>
     </MainLayout>

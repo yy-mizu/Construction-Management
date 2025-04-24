@@ -118,8 +118,8 @@ export default function DynamicModal({ isOpen, onClose, context, data }) {
                     <input type="text" defaultValue={data?.phone || ""} />
                   </div>
                   <div className={styles.inputGroup}>
-                    <label>Assigned Task</label>
-                    <input type="text" defaultValue={data?.assignedTask || ""} />
+                    <label>Display Name</label>
+                    <input type="text" defaultValue={data?.displayname || ""} />
                   </div>
                 </div>
 
@@ -132,7 +132,18 @@ export default function DynamicModal({ isOpen, onClose, context, data }) {
                     <label>Team</label>
                     <input type="text" defaultValue={data?.team || ""} />
                   </div>
+                  <div className={styles.inputGroup}>
+                    <label>Status</label>
+                    <select defaultValue={data?.status || ""}>
+                      <option value="Active">Active</option>
+                      <option value="Inactive">Inactive</option>
+                      <option value="Onleave">OnLeave</option>
+                    </select>
+                  </div>
+
                 </div>
+
+
               </form>
             </div>
           </>
@@ -157,23 +168,20 @@ export default function DynamicModal({ isOpen, onClose, context, data }) {
                   <input type="text" defaultValue={data?.vehiclename || ""} />
                 </div>
                 <div className={styles.inputGroup}>
-                  <label>Vehicle Inspiration Date</label>
-                  <input type="date" defaultValue={data?.date || ""} />
+                  <label>Vehicle Type</label>
+                  <select defaultValue={data?.status || ""}>
+                    <option value="Available">SUV</option>
+                    <option value="In Use">Truck</option>
+                    <option value="Under Maintenance">Pick Up</option>
+                  </select>
                 </div>
               </div>
+
               <div className={styles.formRow}>
-
-
                 <div className={styles.inputGroup}>
-                  <label>Team</label>
+                  <label>License Plate</label>
                   <input type="text" defaultValue={data?.team || ""} />
                 </div>
-
-                <div className={styles.inputGroup}>
-                  <label>Display Name</label>
-                  <input type="text" defaultValue={data?.displayname || ""} />
-                </div>
-
                 <div className={styles.inputGroup}>
                   <label>Status</label>
                   <select defaultValue={data?.status || ""}>
@@ -182,10 +190,7 @@ export default function DynamicModal({ isOpen, onClose, context, data }) {
                     <option value="Under Maintenance">Under Maintenance</option>
                   </select>
                 </div>
-
               </div>
-
-
             </form>
           </>
         );
@@ -228,9 +233,16 @@ export default function DynamicModal({ isOpen, onClose, context, data }) {
 
               <div className={styles.formRow}>
                 <div className={styles.inputGroup}>
-                  <label>Date</label>
+                  <label>Start Date</label>
                   <input type="date" defaultValue={data?.date || ""} />
                 </div>
+                <div className={styles.inputGroup}>
+                  <label>End Date</label>
+                  <input type="date" defaultValue={data?.date || ""} />
+                </div>
+              </div>
+
+              <div className={styles.formRow}>
                 <div className={styles.inputGroup}>
                   <label>Status</label>
                   <select defaultValue={data?.status || ""}>
@@ -272,10 +284,10 @@ export default function DynamicModal({ isOpen, onClose, context, data }) {
                   <label>Note</label>
                   <input type="text" defaultValue={data?.note || ""} />
                 </div>
-                
+
               </div>
 
-              
+
             </form>
           </>
         );

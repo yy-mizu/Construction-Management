@@ -1,67 +1,12 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 import MainLayout from "@/components/layouts/MainLayout.jsx";
+import TableHeader from "@/components/listing/TableHeader.jsx";
 import EmployeeList from "@/components/listing/EmployeeList.jsx";
 import SearchPanel from "@/components/listing/SearchPanel.jsx";
+
 import styles from "@/components/layouts/ListingLayout.module.scss";
-import TableHeader from "@/components/listing/TableHeader.jsx";
-import { useState } from "react";
-
-const sampleEmployees = Array.from({ length: 30 }, (_, index) => {
-  if (index % 3 === 0) {
-    return {
-      name: "Jack",
-      email: "jack@gmail.com",
-      phone: "123456789",
-      assignedTask: "2",
-      team: "Team-One",
-      role: "Manager",
-      status: "Active",
-    };
-  } else if (index % 3 === 1) {
-    return {
-      name: "Sithu",
-      email: "sithu@gmail.com",
-      phone: "987654321",
-      assignedTask: "3",
-      team: "Team-Two",
-      role: "Designer",
-      status: "Inactive",
-    };
-  } else {
-    return {
-      name: "Robin",
-      email: "robin@gmail.com",
-      phone: "555666777",
-      assignedTask: "5",
-      team: "Team-Two",
-      role: "Developer",
-      status: "On Leave",
-    };
-  }
-});
-
-const retirees = Array.from({ length: 10 }, (_, index) => {
-  if (index % 2 === 0) {
-    return {
-      name: "Jack",
-      email: "jack@gmail.com",
-      phone: "123456789",
-      assignedTask: "2",
-      team: "Team-One",
-      role: "Manager",
-      status: "Active",
-    };
-  } else {
-    return {
-      name: "Sithu",
-      email: "sithu@gmail.com",
-      phone: "123456789",
-      assignedTask: "3",
-      team: "Team-Two",
-      role: "Designer",
-      status: "Inactive",
-    };
-  }
-});
 
 export default function EmployeesPage() {
   const [activeTab, setActiveTab] = useState("employees");
@@ -71,10 +16,26 @@ export default function EmployeesPage() {
     role: "",
     status: "",
   });
+  const [allEmployees, setAllEmployees] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
-  };
+  // Fetch employee data
+  useEffect(() => {
+    const fetchEmployees = async () => {
+      try {
+        const res = await axios.get("http://localhost:2244/employees/list");
+        setAllEmployees(res.data);
+      } catch (err) {
+        console.error("Error fetching employees:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEmployees();
+  }, []);
+
+  const handleTabChange = (tab) => setActiveTab(tab);
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value.toLowerCase());
@@ -84,55 +45,47 @@ export default function EmployeesPage() {
     setFilters((prev) => ({ ...prev, [field]: value }));
   };
 
-//   const [isModalOpen, setIsModalOpen] = useState(false);
-// const [selectedContext, setSelectedContext] = useState("employees");
-// const [selectedData, setSelectedData] = useState(null);
-// const handleOpenModal = (context, data) => {
-//   setSelectedContext(context);
-//   setSelectedData(data);
-//   setIsModalOpen(true);
-// };
+  // Filter employees based on active tab, filters, and search
+  const activeList = activeTab === "employees" ? allEmployees : [];
 
-// const handleCloseModal = () => {
-//   setIsModalOpen(false);
-//   setSelectedData(null);
-// };
-
-
-
-  const activeList = activeTab === "employees" ? sampleEmployees : retirees;
-
-  const filteredList = activeList.filter((person) => {
+  const filteredList = activeList.filter((emp) => {
     return (
-      (filters.team === "" || person.team === filters.team) &&
-      (filters.role === "" || person.role === filters.role) &&
-      (filters.status === "" || person.status === filters.status) &&
+      (filters.team === "" || emp.teamid === filters.team) &&
+      (filters.role === "" || emp.role === filters.role) &&
+      (filters.status === "" || emp.status === filters.status) &&
       (searchTerm === "" ||
-        person.name.toLowerCase().includes(searchTerm) ||
-        person.email.toLowerCase().includes(searchTerm) ||
-        person.phone.includes(searchTerm))
+        emp.name?.toLowerCase().includes(searchTerm) ||
+        emp.email?.toLowerCase().includes(searchTerm) ||
+        emp.phoneNumber?.includes(searchTerm))
     );
   });
 
   return (
     <MainLayout>
       <div className={styles.content_wrapper}>
-        <TableHeader
-          activeTab={activeTab}
-          handleTabChange={handleTabChange}
-          activeList={activeList}
-          context="employees"
-        />
+        {loading ? (
+          <div className={styles.loading}>Loading...</div>
+        ) : (
+          <>
+            <TableHeader
+              activeTab={activeTab}
+              handleTabChange={handleTabChange}
+              activeList={filteredList}
+              context="employees"
+            />
 
-        <div className={styles.content_container}>
-          <EmployeeList employees={sampleEmployees} activeList={filteredList} />
-          <SearchPanel
-            onSearch={handleSearchChange}
-            onFilterChange={handleFilterChange}
-            filters={filters}
-            context="employees"
-          />
-        </div>
+            <div className={styles.content_container}>
+              <EmployeeList activeList={filteredList} />
+
+              <SearchPanel
+                onSearch={handleSearchChange}
+                onFilterChange={handleFilterChange}
+                filters={filters}
+                context="employees"
+              />
+            </div>
+          </>
+        )}
       </div>
     </MainLayout>
   );

@@ -10,10 +10,13 @@ export default function ProjectList({ projects = [], activeList }) {
   };
 
   const sortedList = [...activeList].sort((a, b) => {
+    const aPartner = a.business_partner ?? '';
+    const bPartner = b.business_partner ?? '';
+    
     if (sortOrder === "asc") {
-      return a.businessPartner.localeCompare(b.businessPartner);
+      return aPartner.localeCompare(bPartner);
     } else {
-      return b.businessPartner.localeCompare(a.businessPartner);
+      return bPartner.localeCompare(aPartner);
     }
   });
 
@@ -35,12 +38,7 @@ export default function ProjectList({ projects = [], activeList }) {
             <ArrowUpDown />
           </button>
         </span>
-        <span>
-          Staff Name
-          <button onClick={handleSort} className={styles.sort_button}>
-            <ArrowUpDown />
-          </button>
-        </span>
+        
         <span>
           Site Address (City)
           <button onClick={handleSort} className={styles.sort_button}>
@@ -48,14 +46,37 @@ export default function ProjectList({ projects = [], activeList }) {
           </button>
         </span>
         <span>
-          Date
+          Start Date
+          <button onClick={handleSort} className={styles.sort_button}>
+            <ArrowUpDown />
+          </button>
+        </span>
+        <span>
+          End Date
           <button onClick={handleSort} className={styles.sort_button}>
             <ArrowUpDown />
           </button>
         </span>
 
-        <span>Status</span>
-        <span>Info</span>
+        <span>
+          Staff Name
+          <button onClick={handleSort} className={styles.sort_button}>
+            <ArrowUpDown />
+          </button>
+        </span>
+
+
+        <span>Status
+        <button onClick={handleSort} className={styles.sort_button}>
+            <ArrowUpDown />
+          </button>
+        </span>
+        
+        <span>Info
+        <button onClick={handleSort} className={styles.sort_button}>
+            <ArrowUpDown />
+          </button>
+        </span>
       </div>
 
       <div className={styles.listing_body}>
@@ -67,11 +88,13 @@ export default function ProjectList({ projects = [], activeList }) {
                 alt={project.businessPartner}
               />
             </span>
-            <span>{project.businessPartner}</span>
-            <span>{project.customerRep}</span>
-            <span>{project.staffName}</span>
-            <span>{project.siteAddress}</span>
-            <span>{project.inspectionDate}</span>
+            <span>{project.business_partner}</span>
+            <span>{project.customer_representative}</span>
+            
+            <span>{project.site_address}</span>
+            <span>{project.startDate}</span>
+            <span>{project.endDate}</span>
+            <span>{project.staff_name}</span>
             <span>{project.status}</span>
             <span>
               <MoreHorizontal />

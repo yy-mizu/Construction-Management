@@ -14,7 +14,7 @@ export default function EmployeeList({ activeList = [] }) {
 
   const sortedList = useMemo(() => {
     return [...activeList].sort((a, b) => {
-      if (!a[sortConfig.key] || !b[sortConfig.key]) return 0; // Prevent sorting errors if field is missing
+      if (!a[sortConfig.key] || !b[sortConfig.key]) return 0;
       return sortConfig.order === "asc"
         ? a[sortConfig.key].toString().localeCompare(b[sortConfig.key].toString())
         : b[sortConfig.key].toString().localeCompare(a[sortConfig.key].toString());
@@ -25,7 +25,7 @@ export default function EmployeeList({ activeList = [] }) {
     <span>
       {label}
       <button onClick={() => handleSort(sortKey)} className={styles.sort_button}>
-        <ArrowUpDown />
+        <ArrowUpDown size={14} />
       </button>
     </span>
   );
@@ -33,31 +33,29 @@ export default function EmployeeList({ activeList = [] }) {
   return (
     <div className={styles.listing}>
       <div className={styles.listing_header}>
-        <span><ImageIcon /></span>
+        <span><ImageIcon size={16} /></span>
         <SortableHeader label="Name" sortKey="name" />
         <SortableHeader label="Email" sortKey="email" />
-        <SortableHeader label="Phone" sortKey="phone" />
-        <SortableHeader label="Assigned Task" sortKey="assignedTask" />
-        <SortableHeader label="Team" sortKey="team" />
+        <SortableHeader label="Phone" sortKey="phoneNumber" />
+        <SortableHeader label="Display" sortKey="displayName" />
+        <SortableHeader label="Team" sortKey="teamid" />
         <SortableHeader label="Role" sortKey="role" />
         <SortableHeader label="Status" sortKey="status" />
-        <span>Info</span>
+        <span>More</span>
       </div>
 
       <div className={styles.listing_body}>
-        {sortedList.map((person, index) => (
-          <div key={index} className={styles.row}>
-            <span>
-              <img src={person.image || "/logos/image_20250103_14.png"} alt={person.name} />
-            </span>
-            <span>{person.name}</span>
-            <span>{person.email}</span>
-            <span>{person.phone}</span>
-            <span>{person.assignedTask}</span>
-            <span>{person.team}</span>
-            <span>{person.role}</span>
-            <span>{person.status}</span>
-            <span><MoreHorizontal /></span>
+        {sortedList.map((emp) => (
+          <div key={emp.id} className={styles.row}>
+            <span><img src="/logos/image_20250103_14.png" alt={emp.name} /></span>
+            <span>{emp.name}</span>
+            <span>{emp.email}</span>
+            <span>{emp.phoneNumber}</span>
+            <span>{emp.displayName}</span>
+            <span>{emp.teamid}</span>
+            <span>{emp.role}</span>
+            <span>{emp.status}</span>
+            <span><MoreHorizontal size={16} /></span>
           </div>
         ))}
       </div>

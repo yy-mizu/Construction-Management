@@ -34,19 +34,19 @@ export default function VehicleList({
           </button>
         </span>
         <span>
-          Vehicle Inspection Date
+          Status
           <button onClick={handleSort} className={styles.sort_button}>
             <ArrowUpDown />
           </button>
         </span>
         <span>
-          Team
+          Vehicle Type
           <button onClick={handleSort} className={styles.sort_button}>
             <ArrowUpDown />
           </button>
         </span>
         <span>
-          Display Name
+          License Plate
           <button onClick={handleSort} className={styles.sort_button}>
             <ArrowUpDown />
           </button>
@@ -55,24 +55,23 @@ export default function VehicleList({
       </div>
 
       <div className={styles.listing_body}>
-        {sortedList.map((vehicle, index) => (
-          <div key={index} className={styles.row}>
-            <span>
-              {/* <ImageIcon /> */}
-              <img
-                src={vehicle.image || "/logos/image_20250103_14.png"}
-                alt={vehicle.name}
-              />
-            </span>
-            <span>{vehicle.name}</span>
-            <span>{vehicle.InspectionDate}</span>
-            <span>{vehicle.team}</span>
-            <span>{vehicle.displayName}</span>
-            <span>
-              <MoreHorizontal />
-            </span>
-          </div>
-        ))}
+      {sortedList.map((vehicle, index) => (
+  <div key={index} className={styles.row}>
+    <span>
+      <img
+        src={vehicle.image || "/logos/image_20250103_14.png"}
+        alt={vehicle.name}
+      />
+    </span>
+    <span>{vehicle.name}</span>
+    <span>{vehicle.status|| "N/A"}</span>
+    <span>{vehicle.type || "N/A"}</span>
+    <span>{vehicle.license_plate || "N/A"}</span>
+    <span>
+      <MoreHorizontal />
+    </span>
+  </div>
+))}
       </div>
     </div>
   );
